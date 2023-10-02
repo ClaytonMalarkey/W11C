@@ -1,0 +1,78 @@
+/* Global Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f0f0;
+}
+
+/* Page Styles */
+.main-page,
+.battle-page,
+.results-page {
+    display: none;
+    max-width: 600px;
+    margin: 0 auto;
+    background-color: #fff;
+    padding: 20px;
+    border: 1px solid #ddd;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    text-align: center;
+}
+
+/* Pokémon Selection Buttons */
+.pokemon-list {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+/* Battle Container */
+.battle-container {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+}
+
+/* Pokémon Information */
+.battle-pokemon {
+    text-align: center;
+}
+
+img {
+    max-width: 100px;
+    height: auto;
+    margin: 10px;
+}
+
+/* Battle Action Buttons */
+.battle-actions {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.results-page button {
+    background-color: #28a745;
+}
+
+.results-page button:hover {
+    background-color: #1a9318;
+}

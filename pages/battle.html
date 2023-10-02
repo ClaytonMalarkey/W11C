@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Battle</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+    <body>
+        <div class="battle-page">
+            <h1>Battle!</h1>
+            <div class="battle-info">
+                <div class="pokemon-info" id="player-pokemon">
+                    <img src="" alt="Player's Pokémon" id="player-img">
+                    <p id="player-name">Player's Pokémon</p>
+                    <div class="stats">
+                        <p>Type: <span id="player-type"></span></p>
+                        <p>HP: <span id="player-hp"></span></p>
+                        <p>SP: <span id="player-sp"></span></p>
+                    </div>
+                </div>
+                <div class="pokemon-info" id="enemy-pokemon">
+                    <img src="" alt="Enemy Pokémon" id="enemy-img">
+                    <p id="enemy-name">Enemy Pokémon</p>
+                    <div class="stats">
+                        <p>Type: <span id="enemy-type"></span></p>
+                        <p>HP: <span id="enemy-hp"></span></p>
+                        <p>SP: <span id="enemy-sp"></span></p>
+                    </div>
+                </div>
+            </div>
+            <div class="battle-actions">
+                <button onclick="useAttack()">Attack</button>
+                <button onclick="useDefend()">Defend</button>
+                <button onclick="useSpell()">Use Spell</button>
+                <button onclick="useItem()">Use Item</button>
+            </div>
+        </div>
+    
+    <a href="/index.html">home</a>
+    <script src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.1/dist/js.cookie.min.js"></script>
+    <script src="/js/app.js"></script>
+</body>
+</html>
