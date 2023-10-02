@@ -82,6 +82,50 @@ function tryToCatch() {
     }, 1000); // Adjust the delay as needed
 }
 
+// Function to simulate the enemy's turn
+function enemyTurn() {
+    // Implement enemy AI logic here
+    const enemyAction = Math.random(); // Simulate the enemy's action (adjust as needed)
+
+    if (enemyStats.sp < 10) {
+        // Enemy does not have enough SP to take any action
+        // You can choose to skip the enemy's turn or implement a different behavior
+        alert('Enemy does not have enough SP to take an action.');
+        // Allow the player to take their next action
+        enablePlayerActions();
+        return;
+    }
+
+    // Decrease enemy's SP after each action
+    enemyStats.sp -= 10; // Example: Deduct 10 SP per action
+
+    if (enemyAction < 0.3) {
+        // Enemy uses a basic attack
+        const enemyDamage = calculateDamage(enemyStats, playerStats);
+        playerStats.hp -= enemyDamage;
+    } else if (enemyAction < 0.6) {
+        // Enemy uses a special attack (customize as needed)
+        const spellDamage = 25;
+        playerStats.hp -= spellDamage;
+    } else {
+        // Enemy defends (customize as needed)
+        enemyStats.defense += 10;
+    }
+
+    updateStats(PLAYER, playerStats);
+
+    if (playerStats.hp <= 0) {
+        playerStats.hp = 0;
+        endBattle('You lost the battle!');
+    }
+
+    // Check if the battle is still ongoing
+    if (playerStats.hp > 0 && enemyStats.hp > 0) {
+        // Allow the player to take their next action
+        enablePlayerActions();
+    }
+}
+
 // Function to return to the main page (Pokemon selection)
 function returnToMain() {
     clearCookies(); // Clear the player's Pokémon cookie
@@ -104,24 +148,19 @@ function endBattle(message) {
 
 // Function to handle the use spell action
 function useSpell() {
-    if (!canUseAction(playerStats, 10)) {
-        alert('Not enough SP to use this action.');
+    if (enemyStats.sp < 10) {
+        alert('Enemy does not have enough SP to use this action.');
         return;
     }
 
-    // Implement spell usage logic here (adjust as needed)
-    const spellDamage = 25;
-    enemyStats.hp -= spellDamage;
+    // Deduct SP from the enemy
+    enemyStats.sp -= 10; // Example: Spell costs 10 SP
 
-    playerStats.sp -= 10;
+    // Implement spell usage logic here (adjust as needed)
+    const spellHeal = 30; // Example: Spell heals player
+    playerStats.hp += spellHeal;
 
     updateStats(PLAYER, playerStats);
-    updateStats(ENEMY, enemyStats);
-
-    if (enemyStats.hp <= 0) {
-        enemyStats.hp = 0;
-        endBattle('You won the battle!');
-    }
 
     // Call enemyTurn after the player's action
     setTimeout(() => {
