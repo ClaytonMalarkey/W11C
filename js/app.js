@@ -79,12 +79,8 @@ function tryToCatch() {
     // Simulate the enemy's turn after the catch attempt
     setTimeout(() => {
         enemyTurn();
-        hidePage('battle-page');  // Hide the battle page
-        showPage('results-page'); // Show the results page
     }, 1000); // Adjust the delay as needed
 }
-
-
 
 // Function to return to the main page (Pokemon selection)
 function returnToMain() {
@@ -113,7 +109,7 @@ function useSpell() {
         return;
     }
 
-    // Implement spell usage logic here
+    // Implement spell usage logic here (adjust as needed)
     const spellDamage = 25;
     enemyStats.hp -= spellDamage;
 
@@ -126,8 +122,12 @@ function useSpell() {
         enemyStats.hp = 0;
         endBattle('You won the battle!');
     }
-}
 
+    // Call enemyTurn after the player's action
+    setTimeout(() => {
+        enemyTurn();
+    }, 1000); // Adjust the delay as needed
+}
 
 // Function to handle the use item action
 function useItem() {
@@ -136,27 +136,37 @@ function useItem() {
         return;
     }
 
-    // Implement item usage logic (e.g., restore some HP) here
+    // Implement item usage logic here (adjust as needed)
     playerStats.hp += 20;
 
     playerStats.sp -= 10;
 
     updateStats(PLAYER, playerStats);
+
+    // Call enemyTurn after the player's action
+    setTimeout(() => {
+        enemyTurn();
+    }, 1000); // Adjust the delay as needed
 }
 
-// Function to handle the defend action
+// Function to handle the use defend action
 function useDefend() {
     if (!canUseAction(playerStats, 10)) {
         alert('Not enough SP to use this action.');
         return;
     }
 
-    // Implement defense logic (e.g., increase player's defense) here
+    // Implement defense logic here (adjust as needed)
     playerStats.defense += 10;
 
     playerStats.sp -= 10;
 
     updateStats(PLAYER, playerStats);
+
+    // Call enemyTurn after the player's action
+    setTimeout(() => {
+        enemyTurn();
+    }, 1000); // Adjust the delay as needed
 }
 
 // Function to calculate damage
@@ -176,32 +186,33 @@ function canUseAction(stats, spCost) {
     return stats.sp >= spCost;
 }
 
-// Function to handle the attack action
+// Function to handle the use attack action
 function useAttack() {
     if (!canUseAction(playerStats, 10)) {
-        alert('Not enough SP to use this attack.');
+        alert('Not enough SP to use this action.');
         return;
     }
 
+    // Implement attack logic here (adjust as needed)
     const playerDamage = calculateDamage(playerStats, enemyStats);
-    const enemyDamage = calculateDamage(enemyStats, playerStats);
-
-    playerStats.hp -= enemyDamage;
     enemyStats.hp -= playerDamage;
 
     playerStats.sp -= 10;
 
-    updateStats(PLAYER, playerStats);
     updateStats(ENEMY, enemyStats);
+    updateStats(PLAYER, playerStats);
 
-    if (playerStats.hp <= 0) {
-        playerStats.hp = 0;
-        endBattle('You lost the battle!');
-    } else if (enemyStats.hp <= 0) {
+    if (enemyStats.hp <= 0) {
         enemyStats.hp = 0;
         endBattle('You won the battle!');
     }
+
+    // Call enemyTurn after the player's action
+    setTimeout(() => {
+        enemyTurn();
+    }, 1000); // Adjust the delay as needed
 }
+
 
 // Function to set the text content of a given HTML element
 function setPokemonName(nameId, name) {

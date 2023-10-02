@@ -1,0 +1,1 @@
+Select your pokemon do a battle try catch the pokemon you battle tryr to win and than repeat
